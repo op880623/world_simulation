@@ -1,7 +1,7 @@
 require_relative "environment.rb"
 
-class Land
+class Land < Environment
 
   @@lands = []
-  
+
 end
