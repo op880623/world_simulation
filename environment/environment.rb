@@ -54,6 +54,13 @@ class Environment
     return Environment.get(@lng, @lat+1)
   end
 
+  def expand()
+    Environment.new(@lng+1, @lat) if !self.east
+    Environment.new(@lng-1, @lat) if !self.west
+    Environment.new(@lng, @lat-1) if !self.south
+    Environment.new(@lng, @lat+1) if !self.north
+  end
+
   private
 
   def lng=(lng)
