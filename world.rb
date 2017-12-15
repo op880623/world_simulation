@@ -7,10 +7,7 @@ class World
 
   def time_pass(lives)
     for life in lives
-      life.move()
-      if rand(5) == 0
-        life.breed()
-      end
+      life.live()
     end
   end
 
@@ -24,16 +21,26 @@ class World
       places[place] += 1
     end
 
+    print "+"
+    @size.times do |y|
+      print "--+"
+    end
+    puts ""
     @size.times do |x|
       print "|"
       @size.times do |y|
-        print "#{places[x * @size + y]}|"
+        num = places[x * @size + y]
+        if num >= 10
+          print "#{num}|"
+        else
+          print " #{num}|"
+        end
       end
       puts ""
 
-      print "-"
+      print "+"
       @size.times do |y|
-        print "---"
+        print "--+"
       end
       puts ""
     end
