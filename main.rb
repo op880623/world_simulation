@@ -1,34 +1,48 @@
-# work anywhere
-require_relative "life/animal.rb"
-require_relative "world.rb"
-# work in world/
-# require "./life/animal.rb"
-# require "./world.rb"
-# work in world/life
-# require "./animal.rb"
-# require "../world.rb"
+require_relative "interface.rb"
+require_relative "environment/environment.rb"
+require_relative "environment/land.rb"
+require_relative "life/life.rb"
+require_relative "life/animal/animal.rb"
+require_relative "life/plant/plant.rb"
+require_relative "life/plant/grass.rb"
 
-size = 8
-world = World.new(size)
 
-# make a life move around
-# a = Animal.new(world, rand(size), rand(size))
-# 10.times do
-#   puts a.move()
-#   world.show(Life.all)
-# end
+# initialize
+print "Create a world?(y/N)"
+choise = gets.chomp
+puts ""
+return nil if choise != 'y'
+lives = [Life, Animal, Plant, Grass]
 
-# make 10 lives live
-10.times do
-  Animal.new(world, rand(size), rand(size))
+size = nil
+until size
+  size = world_size()
 end
+lng = 0
+lat = 0
 
-world.show(Life.all)
-
-20.times do
-  world.time_pass(Life.all)
+while true
+  puts "".ljust(100, '-')
+  puts "The situation of the world:"
+  show(lives, size)
+  puts "Your location: lng = #{lng}, lat = #{lat}"
+  puts "Actions list:"
+  puts "(m) Move"
+  puts "(c) Create life"
+  puts "(t) Time pass"
+  puts "(q) Quit"
+  print "Your choise:"
+  choise = gets.chomp
+  puts ""
+  case choise
+  when 'm'
+    lng, lat = move(lng, lat, size)
+  when 'c'
+    create_life(lng, lat)
+  when 't'
+    time_pass()
+  when 'q'
+    puts "The world has been destroyed.\nCruel God!"
+    break
+  end
 end
-
-world.show(Life.all)
-puts Life.count
-puts Animal.count
