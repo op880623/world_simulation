@@ -25,4 +25,9 @@ class Plant < Life
     return set
   end
 
+  def die()
+    @@plants.delete(self)
+    super()
+  end
+
 end

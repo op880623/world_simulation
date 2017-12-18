@@ -29,4 +29,10 @@ class Animal < Life
     self.lng = rand(lng-1..lng+1)
     self.lat = rand(lat-1..lat+1)
   end
+
+  def die()
+    @@animals.delete(self)
+    super()
+  end
+
 end
