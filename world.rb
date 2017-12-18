@@ -1,4 +1,5 @@
 class World
+
   attr_accessor :size
 
   def initialize(size)
@@ -12,35 +13,34 @@ class World
   end
 
   def show(lives)
-    places = []
-    (@size**2).times do |i|
-      places[i] = 0
-    end
-    for life in lives
-      place = life.x * @size + life.y
-      places[place] += 1
-    end
-
     print "+"
-    @size.times do |y|
-      print "--+"
+    @size.times do
+      print "+".rjust(16, '-')
     end
     puts ""
-    @size.times do |x|
+
+    @size.times do |lat|
+      lat = size - lat - 1
+
+      # print coordinate
       print "|"
-      @size.times do |y|
-        num = places[x * @size + y]
-        if num >= 10
-          print "#{num}|"
-        else
-          print " #{num}|"
-        end
+      @size.times do |lng|
+        print "lng: #{lng}, lat: #{lat}".ljust(15) + "|"
       end
       puts ""
 
+      # print number of each life, one line per life
+      for life in lives
+        print "|"
+        @size.times do |lng|
+          print "#{life}: #{life.get(lng, lat).size}".ljust(15) + "|"
+        end
+        puts ""
+      end
+
       print "+"
-      @size.times do |y|
-        print "--+"
+      @size.times do
+        print "+".rjust(16, '-')
       end
       puts ""
     end
