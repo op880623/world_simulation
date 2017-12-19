@@ -12,12 +12,9 @@ print "Create a world?(y/N)"
 choise = gets.chomp
 puts ""
 return nil if choise != 'y'
-lives = [Life, Animal, Plant, Grass]
 
-size = nil
-until size
-  size = world_size()
-end
+lives = [Life, Animal, Plant, Grass]
+size = world_size()
 lng = 0
 lat = 0
 
@@ -36,7 +33,7 @@ while true
   puts ""
   case choise
   when 'm'
-    lng, lat = move(lng, lat, size)
+    lng, lat = move_to(lng, lat, size)
   when 'c'
     create_life(lng, lat)
   when 't'
