@@ -26,8 +26,7 @@ class Environment
   end
 
   def to_s()
-    str = "<#{self.class} - lng: #{@lng}, lat: #{@lat}>"
-    return str
+    return "<#{self.class} - lng: #{@lng}, lat: #{@lat}>"
   end
 
   def lng()
@@ -36,6 +35,10 @@ class Environment
 
   def lat()
     return @lat
+  end
+
+  def location()
+    return self.lng(), self.lat()
   end
 
   def east()
@@ -52,6 +55,14 @@ class Environment
 
   def north()
     return Environment.get(@lng, @lat+1)
+  end
+
+  def neighbor()
+    environments = []
+    environments.push(self.east()) if self.east()
+    environments.push(self.west()) if self.west()
+    environments.push(self.south()) if self.south()
+    environments.push(self.north()) if self.north()
   end
 
   def expand()
