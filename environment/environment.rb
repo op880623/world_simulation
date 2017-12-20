@@ -3,7 +3,7 @@ class Environment
   @@environments = []
 
   def initialize(lng, lat)
-    @@environments.delete(Environment.get(lng, lat))
+    Environment.get(lng, lat).destroy() if Environment.get(lng, lat)
     self.lng = lng
     self.lat = lat
     @@environments.push(self)
@@ -22,6 +22,10 @@ class Environment
       return env if env.lng == lng && env.lat == lat
     end
     return nil
+  end
+
+  def destroy()
+    @@environments.delete(self)
   end
 
   def to_s()
