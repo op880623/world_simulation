@@ -4,7 +4,8 @@ class Life
   @@fertility_rate = 0.125
   @@mortality_rate = 0.08
 
-  def initialize(lng, lat)
+  def initialize(location)
+    lng, lat = location
     self.lng = lng
     self.lat = lat
     @@lives.push(self)
@@ -18,10 +19,10 @@ class Life
     return @@lives
   end
 
-  def self.get(lng, lat)
+  def self.get(location)
     set = []
     for life in @@lives
-       set.push(life) if life.lng == lng && life.lat == lat
+       set.push(life) if life.location() == location
     end
     return set
   end
@@ -38,12 +39,16 @@ class Life
     return @lat
   end
 
+  def location()
+    return lng, lat
+  end
+
   def breed?()
     return rand(100) / 100.0 < @@fertility_rate
   end
 
-  def breed()
-    self.class.new(@lng, @lat)
+  def breed(location = self.location())
+    self.class.new(location)
   end
 
   def die?()

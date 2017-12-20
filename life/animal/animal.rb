@@ -4,8 +4,8 @@ class Animal < Life
 
   @@animals = []
 
-  def initialize(lng, lat)
-    super(lng, lat)
+  def initialize(location)
+    super(location)
     @@animals.push(self)
   end
 
@@ -17,10 +17,10 @@ class Animal < Life
     return @@animals
   end
 
-  def self.get(lng, lat)
+  def self.get(location)
     set = []
     for animal in @@animals
-       set.push(animal) if animal.lng == lng && animal.lat == lat
+       set.push(animal) if animal.location() == location
     end
     return set
   end

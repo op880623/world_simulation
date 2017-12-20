@@ -4,8 +4,8 @@ class Plant < Life
 
   @@plants = []
 
-  def initialize(lng, lat)
-    super(lng, lat)
+  def initialize(location)
+    super(location)
     @@plants.push(self)
   end
 
@@ -17,10 +17,10 @@ class Plant < Life
     return @@plants
   end
 
-  def self.get(lng, lat)
+  def self.get(location)
     set = []
     for plant in @@plants
-       set.push(plant) if plant.lng == lng && plant.lat == lat
+       set.push(plant) if plant.location() == location
     end
     return set
   end
