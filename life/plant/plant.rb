@@ -25,6 +25,11 @@ class Plant < Life
     return set
   end
 
+  def crowded?(waterMax)
+    return true if waterMax / 100 < self.class.get(self.location()).size
+    return false
+  end
+
   def die()
     @@plants.delete(self)
     super()
