@@ -2,8 +2,9 @@ class Environment
 
   @@environments = []
 
-  def initialize(lng, lat)
-    Environment.get(lng, lat).destroy() if Environment.get(lng, lat)
+  def initialize(location)
+    Environment.get(location).destroy() if Environment.get(location)
+    lng, lat = location
     self.lng = lng
     self.lat = lat
     @@environments.push(self)
@@ -17,9 +18,9 @@ class Environment
     return @@environments
   end
 
-  def self.get(lng, lat)
+  def self.get(location)
     for env in @@environments
-      return env if env.lng == lng && env.lat == lat
+      return env if env.location() == location
     end
     return nil
   end
@@ -45,19 +46,19 @@ class Environment
   end
 
   def east()
-    return Environment.get(@lng+1, @lat)
+    return Environment.get([@lng+1, @lat])
   end
 
   def west()
-    return Environment.get(@lng-1, @lat)
+    return Environment.get([@lng-1, @lat])
   end
 
   def south()
-    return Environment.get(@lng, @lat-1)
+    return Environment.get([@lng, @lat-1])
   end
 
   def north()
-    return Environment.get(@lng, @lat+1)
+    return Environment.get([@lng, @lat+1])
   end
 
   def neighbor()
@@ -69,10 +70,10 @@ class Environment
   end
 
   def expand()
-    self.class.new(@lng+1, @lat) if !self.east
-    self.class.new(@lng-1, @lat) if !self.west
-    self.class.new(@lng, @lat-1) if !self.south
-    self.class.new(@lng, @lat+1) if !self.north
+    self.class.new([@lng+1, @lat]) if !self.east
+    self.class.new([@lng-1, @lat]) if !self.west
+    self.class.new([@lng, @lat-1]) if !self.south
+    self.class.new([@lng, @lat+1]) if !self.north
   end
 
   private

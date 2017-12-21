@@ -14,7 +14,7 @@ def world_size()
   return world_size()
 end
 
-def move_to(lng, lat, size)
+def move_to(location, size)
 
   def new_lng(size)
     lng = get_number("Enter lng of new location(0~#{size-1}):")
@@ -29,11 +29,11 @@ def move_to(lng, lat, size)
     puts "out of range!"
     return new_lat(size)
   end
-
+  lng, lat = location
   return new_lng(size), new_lat(size)
 end
 
-def create_life(lng, lat)
+def create_life(location)
   def choose_life()
     puts "which kind of life do you want to create?"
     puts "(l) Life"
@@ -63,7 +63,7 @@ def create_life(lng, lat)
   if lifeType = choose_life()
     num = get_number("How many #{lifeType} you want to create?")
     num.times do
-      lifeType.new(lng, lat)
+      lifeType.new(location)
     end
   end
   return nil
@@ -99,7 +99,7 @@ def show(lives, size)
     for life in lives
       print "|"
       size.times do |lng|
-        print "#{life}: #{life.get(lng, lat).size}".ljust(15) + "|"
+        print "#{life}: #{life.get([lng, lat]).size}".ljust(15) + "|"
       end
       puts ""
     end

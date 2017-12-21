@@ -15,14 +15,13 @@ return nil if choise != 'y'
 
 lives = [Life, Animal, Plant, Grass]
 size = world_size()
-lng = 0
-lat = 0
+location = [0, 0]
 
 while true
   puts "".ljust(100, '-')
   puts "The situation of the world:"
   show(lives, size)
-  puts "Your location: lng = #{lng}, lat = #{lat}"
+  puts "Your location: lng = #{location[0]}, lat = #{location[1]}"
   puts "Actions list:"
   puts "(m) Move"
   puts "(c) Create life"
@@ -33,9 +32,9 @@ while true
   puts ""
   case choise
   when 'm'
-    lng, lat = move_to(lng, lat, size)
+    location = move_to(location, size)
   when 'c'
-    create_life(lng, lat)
+    create_life(location)
   when 't'
     time_pass()
   when 'q'
