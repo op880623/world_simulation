@@ -43,12 +43,24 @@ class Life
     return lng, lat
   end
 
+  def get_way(size)
+    east = [self.lng() + 1, size - 1].min()
+    west = [self.lng() - 1, 0].max()
+    north = [self.lat() + 1, size - 1].min()
+    south = [self.lat() - 1, 0].max()
+    location = [rand(west..east), rand(south..north)]
+    while self.location() == location
+      location = [rand(west..east), rand(south..north)]
+    end
+    return location
+  end
+
   def breed?()
     return rand(100) / 100.0 < @@fertility_rate
   end
 
-  def breed(location = self.location())
-    self.class.new(location)
+  def breed(size)
+    self.class.new(self.location())
   end
 
   def die?()
@@ -59,8 +71,8 @@ class Life
     @@lives.delete(self)
   end
 
-  def live()
-    self.breed() if self.breed?
+  def live(size)
+    self.breed(size) if self.breed?
     self.die() if self.die?
   end
 

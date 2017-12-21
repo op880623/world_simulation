@@ -77,11 +77,11 @@ def create_life(location)
   return nil
 end
 
-def time_pass()
+def time_pass(size)
   days = get_number("How many days to pass?")
   days.times do
     for life in Life.all
-      life.live()
+      life.live(size)
     end
   end
 end

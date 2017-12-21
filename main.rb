@@ -37,7 +37,7 @@ while true
   when 'c'
     create_life(location)
   when 't'
-    time_pass()
+    time_pass(size)
   when 'q'
     puts "The world has been destroyed.\nCruel God!"
     break
