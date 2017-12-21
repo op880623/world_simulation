@@ -14,6 +14,14 @@ def world_size()
   return world_size()
 end
 
+def create_world(size)
+  size.times do |lng|
+    size.times do |lat|
+      Land.new([lng, lat])
+    end
+  end
+end
+
 def move_to(location, size)
 
   def new_lng(size)

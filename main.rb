@@ -15,6 +15,7 @@ return nil if choise != 'y'
 
 lives = [Life, Animal, Plant, Grass]
 size = world_size()
+create_world(size)
 location = [0, 0]
 
 while true
