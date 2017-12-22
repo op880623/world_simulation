@@ -77,6 +77,54 @@ def create_life(location)
   return nil
 end
 
+def show_date(days)
+  # count year
+  year = 1
+  while 365 < days
+    year += 1
+    days -= 365
+  end
+  # count month, the rest are days
+  case days
+  when 1..31
+    month = 'Jan'
+  when 32..59
+    month = 'Feb'
+    days -= 31
+  when 60..90
+    month = 'Mar'
+    days -= 59
+  when 91..120
+    month = 'Apr'
+    days -= 90
+  when 121..151
+    month = 'May'
+    days -= 120
+  when 152..181
+    month = 'Jun'
+    days -= 151
+  when 182..212
+    month = 'Jul'
+    days -= 181
+  when 213..243
+    month = 'Aug'
+    days -= 212
+  when 244..273
+    month = 'Sep'
+    days -= 243
+  when 274..304
+    month = 'Oct'
+    days -= 273
+  when 305..334
+    month = 'Nov'
+    days -= 304
+  when 335..365
+    month = "Dec"
+    days -= 334
+  end
+  puts "Date: #{year}-#{month}-#{days}"
+end
+
 def time_pass(size)
   days = get_number("How many days to pass?")
   days.times do
@@ -84,6 +132,7 @@ def time_pass(size)
       life.live(size)
     end
   end
+  return days
 end
 
 def show(lives, size)

@@ -17,11 +17,13 @@ lives = [Life, Animal, Plant, Grass]
 size = world_size()
 create_world(size)
 location = [0, 0]
+days = 1
 
 while true
   puts "".ljust(100, '-')
   puts "The situation of the world:"
   show(lives, size)
+  show_date(days)
   puts "Your location: lng = #{location[0]}, lat = #{location[1]}"
   puts "Actions list:"
   puts "(m) Move"
@@ -37,7 +39,7 @@ while true
   when 'c'
     create_life(location)
   when 't'
-    time_pass(size)
+    days += time_pass(size)
   when 'q'
     puts "The world has been destroyed.\nCruel God!"
     break
