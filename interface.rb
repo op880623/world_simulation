@@ -2,6 +2,8 @@ def get_number(question)
   print question
   input = gets.chomp
   puts ""
+  # return if input is number, or ask again
+  # not handle input out of range
   return input.to_i() if /^\d+$/.match(input)
   return get_number(question)
 end
@@ -15,14 +17,16 @@ def world_size()
 end
 
 def create_world(size)
+  # create a square world
   size.times do |lng|
     size.times do |lat|
+      # only Land now
       Land.new([lng, lat])
     end
   end
 end
 
-def move_to(location, size)
+def move_to(size)
 
   def new_lng(size)
     lng = get_number("Enter lng of new location(0~#{size-1}):")
@@ -37,7 +41,7 @@ def move_to(location, size)
     puts "out of range!"
     return new_lat(size)
   end
-  lng, lat = location
+
   return new_lng(size), new_lat(size)
 end
 
@@ -127,7 +131,9 @@ end
 
 def time_pass(size)
   days = get_number("How many days to pass?")
+  # pass many days
   days.times do
+    # pass one day
     for life in Life.all
       life.live(size)
     end

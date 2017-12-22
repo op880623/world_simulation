@@ -35,7 +35,7 @@ while true
   puts ""
   case choise
   when 'm'
-    location = move_to(location, size)
+    location = move_to(size)
   when 'c'
     create_life(location)
   when 't'
