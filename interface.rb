@@ -137,6 +137,9 @@ def time_pass(size)
     for life in Life.all
       life.live(size)
     end
+    for env in Environment.all
+      env.restore()
+    end
   end
   return days
 end

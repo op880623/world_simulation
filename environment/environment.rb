@@ -76,6 +76,9 @@ class Environment
     self.class.new([@lng, @lat+1]) if !self.north
   end
 
+  def restore()
+  end
+
   private
 
   def lng=(lng)
