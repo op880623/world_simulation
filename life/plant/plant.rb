@@ -3,9 +3,11 @@ require_relative "../life.rb"
 class Plant < Life
 
   @@plants = []
+  @@leavesMax = 100
 
   def initialize(location)
     super(location)
+    @leaves = @@leavesMax
     @@plants.push(self)
   end
 
@@ -25,12 +27,27 @@ class Plant < Life
     return set
   end
 
+  def leaves()
+    return @leaves
+  end
+
+  def healthy?()
+    return self.leaves >= @@leavesMax * 0.9 || false
+  end
+
+  def grow()
+    while self.place().water_used(10) && !self.healthy?
+      @leaves += 5
+    end
+  end
+
   def crowded?()
     return true if self.place().water_max() / 100 < self.class.get(self.location()).size
     return false
   end
 
   def breed(size)
+    return nil if !self.healthy? || !self.place().water_used(200)
     if self.crowded?
       self.class.new(self.get_way(size))
     else
@@ -41,6 +58,15 @@ class Plant < Life
   def die()
     @@plants.delete(self)
     super()
+  end
+
+  def live(size)
+    if !self.place().water_used(self.leaves/2)
+      self.die()
+      return nil
+    end
+    self.grow()
+    super(size)
   end
 
 end
