@@ -160,6 +160,12 @@ def show(lives, size)
       print "lng: #{lng}, lat: #{lat}".ljust(15) + "|"
     end
     puts ""
+    # print coordinate
+    print "|"
+    size.times do |lng|
+      print "water max: #{Environment.get([lng, lat]).water_max}".ljust(15) + "|"
+    end
+    puts ""
 
     # print number of each life, one line per life
     for life in lives
