@@ -25,13 +25,13 @@ class Plant < Life
     return set
   end
 
-  def crowded?(waterMax)
-    return true if waterMax / 100 < self.class.get(self.location()).size
+  def crowded?()
+    return true if self.place().water_max() / 100 < self.class.get(self.location()).size
     return false
   end
 
   def breed(size)
-    if self.crowded?(self.place().water_max())
+    if self.crowded?
       self.class.new(self.get_way(size))
     else
       self.class.new(self.location())
