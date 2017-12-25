@@ -43,6 +43,10 @@ class Life
     return lng, lat
   end
 
+  def place()
+    return Environment.get(self.location())
+  end
+
   def get_way(size)
     east = [self.lng() + 1, size - 1].min()
     west = [self.lng() - 1, 0].max()

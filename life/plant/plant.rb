@@ -31,7 +31,7 @@ class Plant < Life
   end
 
   def breed(size)
-    if self.crowded?(Environment.get(self.location()).water_max())
+    if self.crowded?(self.place().water_max())
       self.class.new(self.get_way(size))
     else
       self.class.new(self.location())
