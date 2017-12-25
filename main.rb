@@ -2,9 +2,10 @@ require_relative "interface.rb"
 require_relative "environment/environment.rb"
 require_relative "environment/land.rb"
 require_relative "life/life.rb"
-require_relative "life/animal/animal.rb"
 require_relative "life/plant/plant.rb"
 require_relative "life/plant/grass.rb"
+require_relative "life/animal/animal.rb"
+require_relative "life/animal/herbivore.rb"
 
 
 # initialize
@@ -13,7 +14,7 @@ choise = gets.chomp
 puts ""
 return nil if choise != 'y'
 
-lives = [Life, Animal, Plant, Grass]
+lives = [Life, Plant, Grass, Animal, Herbivore]
 size = world_size()
 create_world(size)
 location = [0, 0]

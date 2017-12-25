@@ -49,9 +49,10 @@ def create_life(location)
   def choose_life()
     puts "which kind of life do you want to create?"
     puts "(l) Life"
-    puts "(a) Animal"
     puts "(p) Plant"
     puts "(g) Grass"
+    puts "(a) Animal"
+    puts "(h) Herbivore"
     puts "(c) Cancel"
     print "pick one:"
     choise = gets.chomp
@@ -61,6 +62,8 @@ def create_life(location)
       return Life
     when 'a'
       return Animal
+    when 'h'
+      return Herbivore
     when 'p'
       return Plant
     when 'g'
