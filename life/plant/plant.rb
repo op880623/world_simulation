@@ -41,6 +41,16 @@ class Plant < Life
     end
   end
 
+  def be_eaten()
+    if 10 <= @leaves
+      @leaves -= 10
+      return 10
+    else
+      self.die()
+      return @leaves
+    end
+  end
+
   def crowded?()
     return true if self.place().water_max() / 100 < self.class.get(self.location()).size
     return false
