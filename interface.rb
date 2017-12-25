@@ -134,11 +134,11 @@ def time_pass(size)
   # pass many days
   days.times do
     # pass one day
-    for life in Life.all
-      life.live(size)
-    end
     for env in Environment.all
       env.restore()
+    end
+    for life in Life.all
+      life.live(size)
     end
   end
   return days
