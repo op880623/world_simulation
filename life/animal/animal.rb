@@ -3,9 +3,11 @@ require_relative "../life.rb"
 class Animal < Life
 
   @@animals = []
+  @@appetiteMax = 100
 
   def initialize(location)
     super(location)
+    @appetite = @@appetiteMax
     @@animals.push(self)
   end
 
@@ -25,9 +27,49 @@ class Animal < Life
     return set
   end
 
-  def move()
-    self.lng = rand(lng-1..lng+1)
-    self.lat = rand(lat-1..lat+1)
+  def move(size)
+    east = [self.lng() + 1, size - 1].min()
+    west = [self.lng() - 1, 0].max()
+    north = [self.lat() + 1, size - 1].min()
+    south = [self.lat() - 1, 0].max()
+    location = [rand(west..east), rand(south..north)]
+    while self.location() == location
+      location = [rand(west..east), rand(south..north)]
+    end
+    self.lng, self.lat = location
+  end
+
+  def starved?()
+    return true if @appetite < @@appetiteMax * 0.1
+    return false
+  end
+
+  def hungry?()
+    return true if @appetite < @@appetiteMax * 0.9
+    return false
+  end
+
+  def find_food()
+  end
+
+  def eat()
+    while self.hungry?() && food = self.find_food()
+      if food
+        @appetite += food.be_eaten()
+      end
+    end
+  end
+
+  def digest()
+    @appetite = 0
+  end
+
+  def live(size)
+    self.digest()
+    self.move(size)
+    self.eat()
+    self.breed(size) if self.breed?
+    self.die() if self.starved?
   end
 
   def die()
