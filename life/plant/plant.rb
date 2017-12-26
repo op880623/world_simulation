@@ -46,7 +46,7 @@ class Plant < Life
       self.leaves -= appetite
       return appetite
     else
-      self.die()
+      self.leaves = 0
       return self.leaves
     end
   end
@@ -82,8 +82,7 @@ class Plant < Life
   private
 
   def leaves=(leaves)
-    @leaves = leaves
-    self.die() if @leaves <= 0
+    @leaves = [leaves, 0].max
   end
 
 end
