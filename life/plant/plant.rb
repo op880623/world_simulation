@@ -7,7 +7,7 @@ class Plant < Life
 
   def initialize(location)
     super(location)
-    @leaves = @@leavesMax
+    self.leaves = @@leavesMax
     @@plants.push(self)
   end
 
@@ -37,17 +37,17 @@ class Plant < Life
 
   def grow()
     while self.place().water_used(10) && !self.healthy?
-      @leaves += 5
+      self.leaves += 5
     end
   end
 
   def be_eaten()
-    if 10 <= @leaves
-      @leaves -= 10
+    if 10 <= self.leaves
+      self.leaves -= 10
       return 10
     else
       self.die()
-      return @leaves
+      return self.leaves
     end
   end
 
@@ -77,6 +77,13 @@ class Plant < Life
     end
     self.grow()
     super(size)
+  end
+
+  private
+
+  def leaves=(leaves)
+    @leaves = leaves
+    self.die() if @leaves <= 0
   end
 
 end
