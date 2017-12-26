@@ -3,7 +3,7 @@ require_relative "../life.rb"
 class Plant < Life
 
   @@plants = []
-  @@leavesMax = 100
+  @@leavesMax = 1000
 
   def initialize(location)
     super(location)
@@ -32,7 +32,7 @@ class Plant < Life
   end
 
   def healthy?()
-    return self.leaves >= @@leavesMax * 0.9 || false
+    return self.leaves >= @@leavesMax * 0.9
   end
 
   def grow()
@@ -52,7 +52,7 @@ class Plant < Life
   end
 
   def crowded?()
-    return true if self.place().water_max() / 100 < self.class.get(self.location()).size
+    return true if self.place().water_max() / @@leavesMax < self.class.get(self.location()).size
     return false
   end
 

@@ -3,7 +3,7 @@ require_relative "../life.rb"
 class Animal < Life
 
   @@animals = []
-  @@appetiteMax = 100
+  @@appetiteMax = 10
 
   def initialize(location)
     super(location)
