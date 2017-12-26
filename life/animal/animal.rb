@@ -54,8 +54,8 @@ class Animal < Life
   end
 
   def eat()
-    while self.hungry?() && food = self.find_food()
-      @appetite += food.be_eaten()
+    while self.hungry? && food = self.find_food()
+      @appetite += food.be_eaten(@@appetiteMax * 0.1)
     end
   end
 
@@ -65,9 +65,12 @@ class Animal < Life
 
   def live(size)
     self.digest()
-    self.move(size)
-    self.eat()
-    self.breed(size) if self.breed?
+    3.times do
+      self.eat()
+      break if !self.hungry?
+      self.move(size)
+    end
+    self.breed(size) if self.breed? && !self.hungry?
     self.die() if self.starved?
   end
 

@@ -33,9 +33,11 @@ class Land < Environment
   end
 
   def water_used(quantity)
-    if quantity <= @water
+    if 0 < quantity && quantity <= @water
       @water -= quantity
       return quantity
+    elsif quantity <= 0
+      return 0
     else
       return nil
     end

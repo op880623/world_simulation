@@ -41,10 +41,10 @@ class Plant < Life
     end
   end
 
-  def be_eaten()
-    if 10 <= self.leaves
-      self.leaves -= 10
-      return 10
+  def be_eaten(appetite)
+    if appetite <= self.leaves
+      self.leaves -= appetite
+      return appetite
     else
       self.die()
       return self.leaves
@@ -71,9 +71,9 @@ class Plant < Life
   end
 
   def live(size)
-    if !self.place().water_used(self.leaves/2)
-      self.die()
-      return nil
+    until self.place().water_used(self.leaves/2)
+      self.leaves -= 10
+      return nil if self.leaves <= 0
     end
     self.grow()
     super(size)
