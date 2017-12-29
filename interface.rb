@@ -1,3 +1,6 @@
+# require 'date'
+require 'yaml'
+
 def get_number(question)
   print question
   input = gets.chomp
@@ -186,4 +189,21 @@ def show(lives, size)
     puts ""
   end
   puts ""
+end
+
+def save()
+  # fileName = 'save/' + DateTime.now.strftime('%Y%m%d%H%M%S') + '.txt'
+  fileName = 'save/save.txt'
+  file = File.new(fileName, 'w')
+  objects = Environment.all + Life.all
+  file.puts objects.to_yaml
+  file.close()
+end
+
+def load()
+  fileName = 'save/save.txt'
+  objects = YAML.load_file(fileName)
+  for object in objects
+    object.load()
+  end
 end

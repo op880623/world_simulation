@@ -30,6 +30,8 @@ while true
   puts "(m) Move"
   puts "(c) Create life"
   puts "(t) Time pass"
+  puts "(s) Save"
+  puts "(l) Load"
   puts "(q) Quit"
   print "Your choise:"
   choise = gets.chomp
@@ -41,6 +43,10 @@ while true
     create_life(location)
   when 't'
     days += time_pass(size)
+  when 's'
+    save()
+  when 'l'
+    load()
   when 'q'
     puts "The world has been destroyed.\nCruel God!"
     break
