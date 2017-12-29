@@ -25,6 +25,11 @@ class Herbivore < Animal
     return set
   end
 
+  def load()
+    super()
+    @@herbivores.push(self)
+  end
+
   def find_food()
     food = Grass.get(self.location()).sample()
     return nil if !food

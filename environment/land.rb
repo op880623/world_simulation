@@ -19,6 +19,11 @@ class Land < Environment
     return @@lands
   end
 
+  def load()
+    super()
+    @@lands.push(self)
+  end
+
   def destroy()
     super()
     @@lands.delete(self)

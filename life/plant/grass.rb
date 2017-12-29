@@ -25,6 +25,11 @@ class Grass < Plant
     return set
   end
 
+  def load()
+    super()
+    @@grass.push(self)
+  end
+
   def die()
     @@grass.delete(self)
     super()

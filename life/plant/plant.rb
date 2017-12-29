@@ -27,6 +27,11 @@ class Plant < Life
     return set
   end
 
+  def load()
+    super()
+    @@plants.push(self)
+  end
+
   def leaves()
     return @leaves
   end

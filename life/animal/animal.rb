@@ -27,6 +27,11 @@ class Animal < Life
     return set
   end
 
+  def load()
+    super()
+    @@animals.push(self)
+  end
+
   def move(size)
     east = [self.lng() + 1, size - 1].min()
     west = [self.lng() - 1, 0].max()

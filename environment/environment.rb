@@ -25,6 +25,11 @@ class Environment
     return nil
   end
 
+  def load()
+    Environment.get(self.location()).destroy() if Environment.get(self.location())
+    @@environments.push(self)
+  end
+
   def destroy()
     @@environments.delete(self)
   end

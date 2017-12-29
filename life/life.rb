@@ -31,6 +31,10 @@ class Life
     return "<#{self.class} at lng: #{@lng}, lat: #{@lat}>"
   end
 
+  def load()
+    @@lives.push(self)
+  end
+
   def lng()
     return @lng
   end
