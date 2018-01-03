@@ -9,16 +9,17 @@ require_relative "life/animal/herbivore.rb"
 
 
 # initialize
-print "Create a world?(y/N)"
-choise = gets.chomp
-puts ""
-return nil if choise != 'y'
-
 lives = [Life, Plant, Grass, Animal, Herbivore]
-size = world_size()
-create_world(size)
-location = [0, 0]
-days = 1
+if File.exists?('save/save.txt') && get_choise("There is already a world. Load it?(y/N)") == 'y'
+  size, days = load()
+  location = [0, 0]
+else
+  return nil if get_choise("Create a world?(y/N)") != 'y'
+  size = world_size()
+  create_world(size)
+  days = 1
+  location = [0, 0]
+end
 
 while true
   puts "".ljust(100, '-')
@@ -33,9 +34,7 @@ while true
   puts "(s) Save"
   puts "(l) Load"
   puts "(q) Quit"
-  print "Your choise:"
-  choise = gets.chomp
-  puts ""
+  choise = get_choise("Your choise:")
   case choise
   when 'm'
     location = move_to(size)
@@ -44,9 +43,9 @@ while true
   when 't'
     days += time_pass(size)
   when 's'
-    save()
+    save(size, days)
   when 'l'
-    load()
+    size, days = load()
   when 'q'
     puts "The world has been destroyed.\nCruel God!"
     break
