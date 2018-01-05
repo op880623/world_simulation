@@ -58,12 +58,6 @@ class Animal < Life
     return nil
   end
 
-  def eat()
-    while self.hungry? && food = self.find_food()
-      @appetite += food.be_eaten(@@appetiteMax * 0.1)
-    end
-  end
-
   def digest()
     @appetite = 0
   end

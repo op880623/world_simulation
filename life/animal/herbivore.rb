@@ -36,6 +36,12 @@ class Herbivore < Animal
     return food && food.leaves > 0 ? food : nil
   end
 
+  def eat()
+    while self.hungry? && food = self.find_food()
+      @appetite += food.be_eaten(@@appetiteMax * 0.1)
+    end
+  end
+
   def die()
     @@herbivores.delete(self)
     super()
