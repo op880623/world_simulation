@@ -63,22 +63,21 @@ def create_life(location)
     puts "(g) Grass"
     puts "(a) Animal"
     puts "(h) Herbivore"
-    puts "(c) Cancel"
+    puts "(c) Carnivore"
+    puts "(q) Cancel"
     print "pick one:"
     choise = gets.chomp
     puts ""
     case choise
     when 'l'
       return Life
-    when 'a'
-      return Animal
-    when 'h'
-      return Herbivore
-    when 'p'
-      return Plant
     when 'g'
       return Grass
+    when 'h'
+      return Herbivore
     when 'c'
+      return Carnivore
+    when 'q'
       return nil
     else
       return choose_life()

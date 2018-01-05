@@ -136,14 +136,26 @@ def test_herbivore(size)
   # for herbivore in Herbivore.all()
   #   puts "herbivore = #{herbivore}"
   # end
-  load "./life/plant/grass.rb"
+  puts "a.find_food() = #{a.find_food()}"
   3.times do
     Grass.new(a.location())
   end
-  3.times do
-    food = a.find_food()
-    puts "a.find_food() = #{food}"
-  end
+  puts "a.find_food() = #{a.find_food()}"
+  puts "----------------------------------------"
+end
+
+def test_carnivore(size)
+  puts "Carnivore test"
+  load "./life/animal/carnivore.rb"
+  puts "a = Carnivore.new([0, 0])"
+  a = Carnivore.new([0, 0])
+  puts "a.find_food() = #{a.find_food()}"
+  puts "Herbivore.new([0, 0])"
+  Herbivore.new([0, 0])
+  puts "a.find_food() = #{a.find_food()}"
+  puts "a.digest()"
+  a.digest()
+  puts "a.find_food() = #{a.find_food()}"
   puts "----------------------------------------"
 end
 
@@ -254,6 +266,7 @@ test_land(size)
 test_life(size)
 test_animal(size)
 test_herbivore(size)
+test_carnivore(size)
 test_plant(size)
 test_grass(size)
 test_num(size)

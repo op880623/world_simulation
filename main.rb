@@ -6,7 +6,7 @@ require_relative "life/plant/plant.rb"
 require_relative "life/plant/grass.rb"
 require_relative "life/animal/animal.rb"
 require_relative "life/animal/herbivore.rb"
-
+require_relative "life/animal/carnivore.rb"
 
 # initialize
 if File.exists?('save/save.txt') && get_choise("There is already a world. Load it?(y/N)") == 'y'
@@ -17,7 +17,7 @@ else
   create_world(size)
   days = 1
 end
-lives = [Life, Plant, Grass, Animal, Herbivore]
+lives = [Life, Grass, Herbivore, Carnivore]
 location = [0, 0]
 
 while true
