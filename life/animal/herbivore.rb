@@ -1,4 +1,5 @@
 require_relative "animal.rb"
+require_relative "../plant/grass.rb"
 
 class Herbivore < Animal
 
