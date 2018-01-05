@@ -62,6 +62,11 @@ class Animal < Life
     @appetite = 0
   end
 
+  def be_eaten(appetite)
+    self.die()
+    return appetite
+  end
+
   def live(size)
     self.digest()
     3.times do
