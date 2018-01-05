@@ -49,11 +49,11 @@ class Plant < Life
   def be_eaten(appetite)
     if appetite <= self.leaves
       self.leaves -= appetite
-      return appetite
     else
+      appetite = self.leaves
       self.leaves = 0
-      return self.leaves
     end
+    return appetite
   end
 
   def crowded?()
