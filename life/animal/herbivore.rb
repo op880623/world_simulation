@@ -33,9 +33,7 @@ class Herbivore < Animal
 
   def find_food()
     food = Grass.get(self.location()).sample()
-    return nil if !food
-    return food if food.leaves > 0
-    return nil
+    return food && food.leaves > 0 ? food : nil
   end
 
   def die()
