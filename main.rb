@@ -9,17 +9,16 @@ require_relative "life/animal/herbivore.rb"
 
 
 # initialize
-lives = [Life, Plant, Grass, Animal, Herbivore]
 if File.exists?('save/save.txt') && get_choise("There is already a world. Load it?(y/N)") == 'y'
   size, days = load()
-  location = [0, 0]
 else
   return nil if get_choise("Create a world?(y/N)") != 'y'
   size = world_size()
   create_world(size)
   days = 1
-  location = [0, 0]
 end
+lives = [Life, Plant, Grass, Animal, Herbivore]
+location = [0, 0]
 
 while true
   puts "".ljust(100, '-')
